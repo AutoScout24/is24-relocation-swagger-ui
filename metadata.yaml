@@ -1,12 +1,96 @@
-service: relocation-swagger-ui
-usecase: Relocation
-segment: ScoutMedia
+name: Relocation Swagger UI
+id: relocation-swagger-ui
+product: relocation
 vertical: is24
-owner: UmzugProdukt@immobilienscout24.de
-team: relocation
-criticality: bronze
-confidentiality: company-internal
-integrity: uncritical
-availability: uncritical
-data_protection_relevant: no
-repository_url: https://github.com/AutoScout24/is24-relocation-swagger-ui
+platform: aws
+type: documentation
+description: RelocationApi Documentation
+owners:
+  - "#IS24-Umzug-Projekt-Aurora-ds@scout24.com"
+
+# Availability is either critical (=true) or non-critical (=false). Critical
+# means: If the data provided by this service is *lost* (or not available for
+# longer than a day) then a core business process is negatively affected. For
+# example: If single-sign-on authentication is down, then login is partially
+# impossible and multiple business processes are affected. The value is made
+# available by the HoT (or HoP) and specified in the Information Security
+# Objectives Policy:
+# https://gs24.sharepoint.com/risk_compliance_en/Policies/Information%20Security%20Objectives%20-%20Policy.pdf.
+#
+#   Type:    boolean
+#
+# availability: true
+#
+availability: false
+
+# Confidentiality classifies the sensitivity of the data this service contains,
+# works with or works on. This roughly translates to how big the impact is when
+# the data is *breached*. The value is made available by the HoT (or HoP) and
+# specified in the Information Security Objectives Policy:
+# https://gs24.sharepoint.com/risk_compliance_en/Policies/Information%20Security%20Objectives%20-%20Policy.pdf.
+#
+#   Type:    string
+#   Enum:    public, company-internal, company-internal-standard-pii,
+#            company-confidential, company-confidential-sensitive-pii
+#
+# confidentiality: company-internal
+#
+confidentiality: public
+
+# Integrity is either critical (=true) or non-critical (=false). Critical means:
+# If the data provided by this service is *wrong* (or not correct for longer than
+# a day) then a core business process is negatively affected. For example: If
+# financial data is wrong, then resulting reporting is wrong, which affects
+# multiple core business processes. The value is made available by the HoT (or
+# HoP) and specified in the Information Security Objectives Policy:
+# https://gs24.sharepoint.com/risk_compliance_en/Policies/Information%20Security%20Objectives%20-%20Policy.pdf.
+#
+#   Type:    boolean
+#
+# integrity: true
+#
+integrity: false
+
+# A list of links which help people to find more information, point them to
+# endpoints of the service in this repository - or otherwise are helpful and
+# related to this repository.
+#
+#   Type:    array
+#
+# links:
+#   -
+#     # URL of the link.
+#     #
+#     #   Type:    string
+#     #
+#     address: https://foo-bar.domain.tld
+#
+#     # Display title.
+#     #
+#     #   Type:    string
+#     #
+#     title: Public website
+#
+#     # Type of the link.
+#     #
+#     #   Type:    string
+#     #   Enum:    api-definition, api-documentation, dashboard, documentation,
+#     #            disaster-recovery, logging, monitoring, public, repository, runbook
+#     #
+#     type: public
+#
+#
+links:
+  -
+    address: https://github.com/Scout24/is24-relocation-swagger-ui
+    title: "Project Repository"
+    type: repository
+  -
+    address: https://teamcity.cloud.scout24.com/project.html?projectId=RelocationRewriteUmzug_SwaggerUi&tab=projectOverview
+    title: "Teamcity"
+    type: build-chain
+
+  - address: http://relocation-swagger-ui.s3-website-eu-west-1.amazonaws.com/
+    title: "Api Documentation"
+    type: api-documentation
+
