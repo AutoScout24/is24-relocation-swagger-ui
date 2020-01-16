@@ -35,6 +35,11 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'npm run test'
+        sh 'npm run build'
+        sh 'cf sync cfn/cfn-config.yml --confirm'
+        sh 'aws s3 sync dist/ s3://relocation-swagger-ui/ --delete'
+        sh 'aws s3 sync dist/ s3://relocation-partner-swagger-ui/ --delete'
+
       }
     }
 
