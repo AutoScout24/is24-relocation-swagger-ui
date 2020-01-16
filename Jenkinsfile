@@ -30,7 +30,7 @@ pipeline {
 
   stages {
 
-    stage('Run tests'){
+    stage('Run tests and deploy'){
       agent { node { label 'build-fullstack' } }
       steps {
         sh 'npm install'
@@ -39,18 +39,6 @@ pipeline {
         sh 'cf sync cfn/cfn-config.yml --confirm'
         sh 'aws s3 sync dist/ s3://relocation-swagger-ui/ --delete'
         sh 'aws s3 sync dist/ s3://relocation-partner-swagger-ui/ --delete'
-
-      }
-    }
-
-    stage('Run tests and deploy sandbox') {
-      agent { label 'build-fullstack'}
-      when {
-        beforeAgent true
-        branch 'master'
-      }
-      steps {
-        sh 'echo deploy'
 
       }
     }
