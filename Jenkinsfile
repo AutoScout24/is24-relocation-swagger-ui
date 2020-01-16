@@ -32,9 +32,6 @@ pipeline {
 
     stage('Run tests'){
       agent { node { label 'build-fullstack' } }
-      when {
-        beforeAgent true
-      }
       steps {
         sh 'npm install'
         sh 'npm run test'
