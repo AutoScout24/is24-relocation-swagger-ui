@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  agent none
+  agent { label 'build-fullstack'}
 
   triggers {
     cron('H 9 * * 2') // Runs at least once a week
@@ -31,7 +31,6 @@ pipeline {
   stages {
 
     stage('Run tests and deploy'){
-      agent { label 'build-fullstack'}
       when {
         beforeAgent true
         branch 'master'
